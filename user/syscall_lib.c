@@ -4,13 +4,10 @@
 #include <env.h>
 #include <trap.h>
 
-extern int msyscall(int, int, int, int, int, int);
-
 void syscall_putchar(char ch)
 {
 	msyscall(SYS_putchar, (int)ch, 0, 0, 0, 0);
 }
-
 
 
 u_int
@@ -55,15 +52,6 @@ syscall_mem_unmap(u_int envid, u_int va)
 	return msyscall(SYS_mem_unmap, envid, va, 0, 0, 0);
 }
 
-int syscall_env_alloc(void)
-{
-
-	int a = msyscall(SYS_env_alloc, 0, 0, 0, 0, 0);
-	//writef("syscall_env_alloc(): return : %x\n",a);
-	writef("");
-	return a;
-}
-
 int
 syscall_set_env_status(u_int envid, u_int status)
 {
@@ -98,4 +86,24 @@ int
 syscall_cgetc()
 {
 	return msyscall(SYS_cgetc, 0, 0, 0, 0, 0);
+}
+int 
+syscall_write_dev(u_int va, u_int dev, u_int len)
+{
+	return msyscall(SYS_write_dev,va,dev,len,0,0);
+}
+int 
+syscall_read_dev(u_int va, u_int dev, u_int len)
+{
+        return msyscall(SYS_read_dev,va,dev,len,0,0);
+}
+int
+syscall_read_sector(u_int diskno,u_int offset)
+{
+	return msyscall(SYS_read_sector,diskno,offset,0,0,0);
+}
+int
+syscall_write_sector(u_int diskno,u_int offset)
+{
+        return msyscall(SYS_write_sector,diskno,offset,0,0,0);
 }
