@@ -78,3 +78,4 @@ ide_write(u_int diskno, u_int secno, void *src, u_int nsecs)
 	}
 }
 
+

@@ -1,4 +1,4 @@
 make clean
 make
-/OSLAB/gxemul -E testmips -C R3000 -M 64 gxemul/vmlinux
+/opt/gxemul/gxemul-0.4.6/gxemul -E testmips -C R3000 -M 64 -d gxemul/fs.img gxemul/vmlinux
 make clean
